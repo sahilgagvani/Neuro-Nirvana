@@ -6,10 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pixmap("/home/student/3004final/hamburgerMenu.png");
-    QIcon ButtonIcon(pixmap);
-    ui->menuButton->setIcon(ButtonIcon);
-    ui->menuButton->setIconSize(pixmap.rect().size());
 }
 
 MainWindow::~MainWindow()

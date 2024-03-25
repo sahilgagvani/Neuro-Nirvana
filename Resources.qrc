@@ -2,7 +2,12 @@
     <qresource prefix="/">
         <file>upTriangle.jpeg</file>
         <file>stop.jpeg</file>
-        <file>powerIcon.jpg</file>
         <file>hamburgerMenu.jpeg</file>
+        <file>downTriangle.jpeg</file>
+        <file>pause.jpeg</file>
+        <file>lowBattery.jpeg</file>
+        <file>play.jpeg</file>
+        <file>chargedBattery.jpeg</file>
+        <file>powerIcon.jpeg</file>
     </qresource>
 </RCC>

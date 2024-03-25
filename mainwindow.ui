@@ -16,6 +16,12 @@
   <property name="styleSheet">
    <string notr="true">background-color: rgb(222, 221, 218);</string>
   </property>
+  <property name="iconSize">
+   <size>
+    <width>30</width>
+    <height>30</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="menuButton">
     <property name="geometry">
@@ -35,8 +41,8 @@
     </property>
     <property name="iconSize">
      <size>
-      <width>20</width>
-      <height>20</height>
+      <width>30</width>
+      <height>30</height>
      </size>
     </property>
    </widget>
@@ -109,8 +115,8 @@ Time and Date</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>downTriangle.jpeg</normaloff>downTriangle.jpeg</iconset>
+     <iconset resource="Resources.qrc">
+      <normaloff>:/downTriangle.jpeg</normaloff>:/downTriangle.jpeg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -132,8 +138,8 @@ Time and Date</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>pause.png</normaloff>pause.png</iconset>
+     <iconset resource="Resources.qrc">
+      <normaloff>:/pause.jpeg</normaloff>:/pause.jpeg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -155,8 +161,8 @@ Time and Date</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>play.png</normaloff>play.png</iconset>
+     <iconset resource="Resources.qrc">
+      <normaloff>:/play.jpeg</normaloff>:/play.jpeg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -254,7 +260,7 @@ Time and Date</string>
     </property>
     <property name="icon">
      <iconset resource="Resources.qrc">
-      <normaloff>:/powerIcon.jpg</normaloff>:/powerIcon.jpg</iconset>
+      <normaloff>:/powerIcon.jpeg</normaloff>:/powerIcon.jpeg</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -279,8 +285,9 @@ Time and Date</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset>
-      <normaloff>chargedBattery.jpg</normaloff>chargedBattery.jpg</iconset>
+     <iconset resource="Resources.qrc">
+      <normaloff>:/chargedBattery.jpeg</normaloff>
+      <normalon>:/lowBattery.jpeg</normalon>:/chargedBattery.jpeg</iconset>
     </property>
     <property name="iconSize">
      <size>
