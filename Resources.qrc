@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>upTriangle.jpeg</file>
+        <file>stop.jpeg</file>
+        <file>powerIcon.jpg</file>
+        <file>hamburgerMenu.jpeg</file>
+    </qresource>
+</RCC>
