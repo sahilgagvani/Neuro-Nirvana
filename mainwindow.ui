@@ -68,9 +68,7 @@
 padding: 25px 25px 25px 25px;</string>
     </property>
     <property name="text">
-     <string>New Session 
-Session Log 
-Time and Date</string>
+     <string/>
     </property>
     <property name="alignment">
      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -296,6 +294,87 @@ Time and Date</string>
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="menuOpt1">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>220</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(154, 153, 150);
+padding: 0px 25px 0px 25px;
+border: none;
+text-align: left;</string>
+    </property>
+    <property name="text">
+     <string>New Session</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">menuOptions</string>
+    </attribute>
+   </widget>
+   <widget class="QPushButton" name="menuOpt2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>250</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(153, 193, 241);
+padding: 0px 25px 0px 25px;
+border: none;
+text-align: left;</string>
+    </property>
+    <property name="text">
+     <string>Session Log</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">menuOptions</string>
+    </attribute>
+   </widget>
+   <widget class="QPushButton" name="menuOpt3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>280</y>
+      <width>351</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(153, 193, 241);
+padding: 0px 25px 0px 25px;
+border: none;
+text-align: left;</string>
+    </property>
+    <property name="text">
+     <string>Time and Date</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">menuOptions</string>
+    </attribute>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -313,4 +392,7 @@ Time and Date</string>
   <include location="Resources.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="menuOptions"/>
+ </buttongroups>
 </ui>
