@@ -14,7 +14,14 @@ MainWindow::MainWindow(QWidget *parent)
     menuStrings.push_back("Time and Date");
     connect(ui->upArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
     connect(ui->downArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
-
+    connect(ui->menuButton, SIGNAL(released()), this, SLOT(on_menuButton_released()));
+    connect(ui->powerButton, SIGNAL(released()), this, SLOT(on_powerButton_released()));
+    connect(ui->upArrowButton, SIGNAL(released()), this, SLOT(on_upArrowButton_released()));
+    connect(ui->downArrowButton, SIGNAL(released()), this, SLOT(on_downArrowButton_released()));
+    connect(ui->stopButton, SIGNAL(released()), this, SLOT(on_stopButton_released()));
+    connect(ui->playButton, SIGNAL(released()), this, SLOT(on_playButton_released()));
+    connect(ui->pauseButton, SIGNAL(released()), this, SLOT(on_pauseButton_released()));
+    
     foreach(QAbstractButton *button, ui->menuOptions->buttons()){
         ui->menuOptions->setId(button, button->objectName().right(1).toInt());
     }
@@ -41,3 +48,11 @@ void MainWindow::scroll() {
     }
     ui->menuOptions->button(highlighted)->setStyleSheet("QPushButton{background-color: rgb(154, 153, 150); padding: 0px 25px 0px 25px; border: none; text-align: left; }\n");
 }
+
+void MainWindow::on_powerbutton_released(){}
+void MainWindow::on_menueButton_released(){}
+void MainWindow::on_upArrowButton_released(){}
+void MainWindow::on_downArrowButton_released(){}
+void MainWindow::on_stopButton_released(){}
+void MainWindow::on_playButton_released(){}
+void MainWindow::on_pauseButton_released(){}
