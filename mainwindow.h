@@ -16,6 +16,13 @@ public:
     ~MainWindow();
 public slots:
     void scroll();
+    void on_powerbutton_released();
+    void on_menueButton_released();
+    void on_upArrowButtonButton_released();
+    void on_downArrowButton_released();
+    void on_stopButton_released();
+    void on_playButton_released();
+    void on_pauseButton_released();
 
 private:
     Ui::MainWindow *ui;
