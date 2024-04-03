@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
+#include <QDialog>
+#include <QHBoxLayout>
+#include <QTime>
+#include <QLabel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,16 +23,22 @@ public slots:
     void scroll();
     void on_powerbutton_released();
     void on_menueButton_released();
-    void on_upArrowButtonButton_released();
+    void on_upArrowButton_released();
     void on_downArrowButton_released();
     void on_stopButton_released();
     void on_playButton_released();
     void on_pauseButton_released();
+    void createTimer();
+    void stopTimer();
+    void pauseTimer();
 
 private:
     Ui::MainWindow *ui;
     std::list<QString> menuStrings; // list of the menu options displayed on the screen
     int highlighted; // holds the index of the currently selected menu options
     QString currScreen; // holds the current screen - menu, new session, etc.
+    QWidget *timerWidget;
+    QLabel *timerlabel;
+    QTimer *timer;
 };
 #endif // MAINWINDOW_H
