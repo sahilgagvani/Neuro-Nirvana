@@ -92,6 +92,9 @@ void MainWindow::createTimer(){
 
     QLabel *timerLabel = new QLabel(timerWidget);
     timerLabel->setText("01:00"); // Initial time on countdown
+    timerLabel->setAlignment(Qt::AlignHCenter);
+    timerLabel->setAlignment(Qt::AlignTop);
+    timerLabel->setStyleSheet("QLabel{background-color: rgb(153, 193, 241); font-size: 18px; padding: 0px 5px 70px 5px;}");
     counter=60;
 
     // Intrnal QTimer to keep track of seconds and decrement based on the interval time I defined below
@@ -119,7 +122,7 @@ void MainWindow::createTimer(){
         }
     });
 
-    ui->verticalLayout->addWidget(timerWidget);
+    ui->horizontalLayout->addWidget(timerWidget);
 
     timer->start();
 }

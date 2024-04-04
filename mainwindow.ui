@@ -388,22 +388,35 @@ text-align: left;</string>
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>30</y>
-      <width>271</width>
-      <height>121</height>
+      <x>260</x>
+      <y>60</y>
+      <width>160</width>
+      <height>80</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <property name="spacing">
-      <number>-1</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="timerLabel">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(153, 193, 241);
+padding: 0px 5px 5px 5px;</string>
+       </property>
+       <property name="text">
+        <string>Timer:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>
