@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "qdebug.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,8 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->downArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
     connect(ui->menuButton, SIGNAL(released()), this, SLOT(on_menuButton_released()));
     connect(ui->powerButton, SIGNAL(released()), this, SLOT(on_powerButton_released()));
-    connect(ui->upArrowButton, SIGNAL(released()), this, SLOT(on_upArrowButton_released()));
-    connect(ui->downArrowButton, SIGNAL(released()), this, SLOT(on_downArrowButton_released()));
     connect(ui->stopButton, SIGNAL(released()), this, SLOT(on_stopButton_released()));
     connect(ui->playButton, SIGNAL(released()), this, SLOT(on_playButton_released()));
     connect(ui->pauseButton, SIGNAL(released()), this, SLOT(on_pauseButton_released()));
@@ -32,6 +31,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 
 void MainWindow::scroll() {
     QObject *senderButton = sender();
@@ -50,16 +50,8 @@ void MainWindow::scroll() {
     ui->menuOptions->button(highlighted)->setStyleSheet("QPushButton{background-color: rgb(154, 153, 150); padding: 0px 25px 0px 25px; border: none; text-align: left; }\n");
 }
 
-void MainWindow::on_powerbutton_released(){}
-void MainWindow::on_menueButton_released(){}
-
-void MainWindow::on_upArrowButton_released(){
-    // to do : sahil
-}
-void MainWindow::on_downArrowButton_released(){
-    // to do : sahil
-}
-
+void MainWindow::on_powerButton_released(){}
+void MainWindow::on_menuButton_released(){}
 
 void MainWindow::on_stopButton_released(){
 
