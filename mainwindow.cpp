@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qdebug.h"
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -21,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->stopButton, SIGNAL(released()), this, SLOT(on_stopButton_released()));
     connect(ui->playButton, SIGNAL(released()), this, SLOT(on_playButton_released()));
     connect(ui->pauseButton, SIGNAL(released()), this, SLOT(on_pauseButton_released()));
+
+    // for updating the time (still static)
+    ui->currTime->setText(QTime::currentTime().toString("h:mm:ss AP")); // seconds will be removed once dyanmic updating is implemented.
+    ui->currDate->setText(QDate::currentDate().toString("MMMM d yyyy"));
+    // to do Sahil: make the time label update in real time.
     
     foreach(QAbstractButton *button, ui->menuOptions->buttons()){
         ui->menuOptions->setId(button, button->objectName().right(1).toInt());
@@ -60,7 +66,7 @@ void MainWindow::on_stopButton_released(){
 
 void MainWindow::on_playButton_released()
 {
-    if (highlighted==1){
+    if (highlighted==1){ // timer will only be started when the user is on New Session
         MainWindow:createTimer();
     }
 }
