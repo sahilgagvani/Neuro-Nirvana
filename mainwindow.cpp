@@ -60,10 +60,9 @@ void MainWindow::on_stopButton_released(){
 
 void MainWindow::on_playButton_released()
 {
-    // sahil to do:  add conditions here which check for which option has been highlighted on the screen. The createTimer() should only be triggered when the 'New Session' option is selected.
-    MainWindow::createTimer();
-
-
+    if (highlighted==1){
+        MainWindow:createTimer();
+    }
 }
 void MainWindow::on_pauseButton_released(){
 
