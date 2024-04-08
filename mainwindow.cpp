@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qdebug.h"
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -27,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->currTime->setText(QTime::currentTime().toString("h:mm:ss AP")); // seconds will be removed once dyanmic updating is implemented.
     ui->currDate->setText(QDate::currentDate().toString("MMMM d yyyy"));
     // to do Sahil: make the time label update in real time.
+    ui->sessionLayout->hide();
+    ui->timeAndDateLayout->hide();
     
     foreach(QAbstractButton *button, ui->menuOptions->buttons()){
         ui->menuOptions->setId(button, button->objectName().right(1).toInt());
@@ -57,7 +60,11 @@ void MainWindow::scroll() {
 }
 
 void MainWindow::on_powerButton_released(){}
-void MainWindow::on_menuButton_released(){}
+void MainWindow::on_menuButton_released(){
+    ui->sessionLayout->hide();
+    ui->timeAndDateLayout->hide();
+    ui->menuLayout->show();
+}
 
 void MainWindow::on_stopButton_released(){
 
@@ -66,9 +73,17 @@ void MainWindow::on_stopButton_released(){
 
 void MainWindow::on_playButton_released()
 {
+    ui->menuLayout->hide(); // hides current menu screen
     if (highlighted==1){ // timer will only be started when the user is on New Session
         MainWindow:createTimer();
+        ui->sessionLayout->show();
+    } else if (highlighted==2){
+
+    } else {
+        ui->timeAndDateLayout->show();
     }
+    // sahil to do:  add conditions here which check for which option has been highlighted on the screen. The createTimer() should only be triggered when the 'New Session' option is selected.
+
 }
 void MainWindow::on_pauseButton_released(){
 
@@ -120,7 +135,11 @@ void MainWindow::createTimer(){
         }
     });
 
-    ui->horizontalLayout->addWidget(timerWidget);
+    //ui->timerLayout->addWidget(timerWidget);
+    timerWidget->setParent(ui->sessionLayout);
+    timerWidget->setGeometry(190, 10, 150, 50);
+    timerWidget->setStyleSheet("QWidget{background-color: rgb(153, 193, 241);}");
+    timerWidget->show();
 
     timer->start();
 }
@@ -131,6 +150,32 @@ void MainWindow::startTreatment() {
     // code for starting treatment here
 
     ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
+}
+
+void MainWindow::contactLost() {
+    QMessageBox restablishContact;
+    ui->redLight->setStyleSheet("QPushButton{background-color: rgb(237, 51, 59);}");
+    restablishContact.setText("Alert: Contact has been lost");
+    QAbstractButton *responseButton = restablishContact.addButton(tr("Restablish contact"), QMessageBox::AcceptRole);
+
+    int count = 5;
+    QTimer countdown;
+    bool buttonClicked = true;
+    QObject::connect(&countdown, &QTimer::timeout, [&restablishContact, &count, &countdown, &buttonClicked]()->void{
+       if (count-- == 0) {
+           countdown.stop();
+           buttonClicked = false; // the button has not been pressed yet
+           restablishContact.close();
+       }
+    });
+    countdown.start(1000);
+    restablishContact.exec();
+    if (buttonClicked) {
+        qInfo("Contact has been restablished");
+        ui->redLight->setStyleSheet("QPushButton{background-color: rgb(246, 97, 81);}");
+    } else {
+        qInfo("Contact has been lost");
+    }
 }
 
 void MainWindow::stopTimer() {

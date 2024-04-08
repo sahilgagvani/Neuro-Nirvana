@@ -32,6 +32,7 @@ public slots:
     void startTreatment();
     void stopTimer();
     void pauseTimer();
+    void contactLost();
 
 private:
     Ui::MainWindow *ui;
