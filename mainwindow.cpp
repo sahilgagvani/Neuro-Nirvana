@@ -92,16 +92,16 @@ void MainWindow::createTimer(){
     // Intrnal QTimer to keep track of seconds and decrement based on the interval time I defined below
     QTimer *timer = new QTimer(timerWidget);
     timer->setInterval(1000); // Update every second
+    ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(28, 113, 216);}");
 
     // Connect the timer timeout signal to update the countdown label
     bool connected = connect(timer, &QTimer::timeout, [=]() {
-
         counter--;
         int minutes = counter / 60;
         int seconds = counter % 60;
 
         // to print on console for internal checking
-        qDebug() << "Time left: " << minutes << " minutes and " << seconds << " seconds";
+        //qDebug() << "Time left: " << minutes << " minutes and " << seconds << " seconds";
 
         // Updating the timer label
         QString timeString = QString("%1:%2").arg(minutes, 2, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')); // basic formatting
@@ -110,6 +110,7 @@ void MainWindow::createTimer(){
         if (counter == 0) {
             delete timerWidget;
             timerWidget = nullptr;
+            ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(153, 193, 241);}");
             //timer->stop(); // Stop the timer
         }
     });
@@ -117,6 +118,14 @@ void MainWindow::createTimer(){
     ui->horizontalLayout->addWidget(timerWidget);
 
     timer->start();
+}
+
+void MainWindow::startTreatment() {
+    ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(51, 209, 122);}");
+
+    // code for starting treatment here
+
+    ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
 }
 
 void MainWindow::stopTimer() {

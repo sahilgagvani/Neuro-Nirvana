@@ -202,7 +202,7 @@ padding: 25px 25px 25px 25px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(28, 113, 216);</string>
+     <string notr="true">background-color: rgb(153, 193, 241);</string>
     </property>
     <property name="text">
      <string/>
@@ -218,7 +218,8 @@ padding: 25px 25px 25px 25px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(237, 51, 59);</string>
+     <string notr="true">background-color: rgb(237, 51, 59);
+border-color: rgb(237, 51, 59);</string>
     </property>
     <property name="text">
      <string/>
@@ -234,7 +235,7 @@ padding: 25px 25px 25px 25px;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(51, 209, 122);
+     <string notr="true">background-color: rgb(143, 240, 164);
 </string>
     </property>
     <property name="text">

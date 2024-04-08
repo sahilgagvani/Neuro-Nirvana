@@ -27,6 +27,7 @@ public slots:
     void on_playButton_released();
     void on_pauseButton_released();
     void createTimer();
+    void startTreatment();
     void stopTimer();
     void pauseTimer();
 
