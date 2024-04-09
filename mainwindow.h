@@ -46,17 +46,9 @@ private:
     QWidget *disconnectTimerWidget;
     QLabel *timerlabel;
     QTimer *timer;
-<<<<<<< HEAD
     centralprocessor headset;
-<<<<<<< Updated upstream
-=======
     bool disconnectTimerRunning;
     int remainingTime;
->>>>>>> 445f962 (Added disconnect button and timer for testing, refined lights)
-=======
-    bool disconnectTimerRunning;
-    int remainingTime;
->>>>>>> Stashed changes
     void disableButtons(bool);
 };
 #endif // MAINWINDOW_H
