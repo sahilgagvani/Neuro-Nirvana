@@ -42,5 +42,6 @@ private:
     QWidget *timerWidget;
     QLabel *timerlabel;
     QTimer *timer;
+    void disableButtons(bool);
 };
 #endif // MAINWINDOW_H

@@ -18,17 +18,23 @@ MainWindow::MainWindow(QWidget *parent)
     menuStrings.push_back("Time and Date");
     connect(ui->upArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
     connect(ui->downArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
-    connect(ui->menuButton, SIGNAL(released()), this, SLOT(on_menuButton_released()));
+
+    MainWindow::disableButtons(true);// disables buttons until power button is pressed
+    /*connect(ui->menuButton, SIGNAL(released()), this, SLOT(on_menuButton_released()));
     connect(ui->powerButton, SIGNAL(released()), this, SLOT(on_powerButton_released()));
     connect(ui->stopButton, SIGNAL(released()), this, SLOT(on_stopButton_released()));
     connect(ui->playButton, SIGNAL(released()), this, SLOT(on_playButton_released()));
     connect(ui->pauseButton, SIGNAL(released()), this, SLOT(on_pauseButton_released()));
+    */
 
     // for updating the time (still static)
     ui->currTime->setText(QTime::currentTime().toString("h:mm:ss AP")); // seconds will be removed once dyanmic updating is implemented.
     ui->currDate->setText(QDate::currentDate().toString("MMMM d yyyy"));
     // to do Sahil: make the time label update in real time.
+
+    ui->menuLayout->hide();
     ui->sessionLayout->hide();
+    ui->logLayout->hide();
     ui->timeAndDateLayout->hide();
     
     foreach(QAbstractButton *button, ui->menuOptions->buttons()){
@@ -59,10 +65,42 @@ void MainWindow::scroll() {
     ui->menuOptions->button(highlighted)->setStyleSheet("QPushButton{background-color: rgb(154, 153, 150); padding: 0px 25px 0px 25px; border: none; text-align: left; }\n");
 }
 
-void MainWindow::on_powerButton_released(){}
+void MainWindow::disableButtons(bool disableValue) {
+    ui->playButton->setDisabled(disableValue);
+    ui->pauseButton->setDisabled(disableValue);
+    ui->stopButton->setDisabled(disableValue);
+    ui->upArrowButton->setDisabled(disableValue);
+    ui->downArrowButton->setDisabled(disableValue);
+    ui->menuButton->setDisabled(disableValue);
+}
+
+void MainWindow::on_powerButton_released(){
+    if (ui->menuLayout->isVisible()) {
+        ui->menuLayout->hide();
+        MainWindow::disableButtons(true);
+    } else if (ui->sessionLayout->isVisible()){
+        ui->sessionLayout->hide();
+        MainWindow::disableButtons(true);
+    } else if (ui->logLayout->isVisible()) {
+        ui->logLayout->hide();
+        MainWindow::disableButtons(true);
+    } else if (ui->timeAndDateLayout->isVisible()) {
+        ui->timeAndDateLayout->hide();
+        MainWindow::disableButtons(true);
+    } else {
+        ui->menuLayout->show();
+        MainWindow::disableButtons(false);
+    }
+}
+
 void MainWindow::on_menuButton_released(){
-    ui->sessionLayout->hide();
-    ui->timeAndDateLayout->hide();
+    if (ui->sessionLayout->isVisible()){
+        ui->sessionLayout->hide();
+    } else if (ui->logLayout->isVisible()) {
+        ui->logLayout->hide();
+    } else {
+        ui->timeAndDateLayout->hide();
+    }
     ui->menuLayout->show();
 }
 
@@ -75,6 +113,7 @@ void MainWindow::on_playButton_released()
 {
     ui->menuLayout->hide(); // hides current menu screen
     if (highlighted==1){ // timer will only be started when the user is on New Session
+        MainWindow::startTreatment();
         MainWindow:createTimer();
         ui->sessionLayout->show();
     } else if (highlighted==2){
@@ -150,6 +189,15 @@ void MainWindow::startTreatment() {
     // code for starting treatment here
 
     ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
+    ui->batteryBar->setValue(ui->batteryBar->value() - 33);
+    if ((ui->batteryBar->value() <= 1)) {
+        QMessageBox batteryDead;
+        batteryDead.setText("Alert: Battery is dead. Powering off");
+        batteryDead.exec();
+        qInfo("Powering off");
+        ui->sessionLayout->hide();
+        MainWindow::on_powerButton_released();
+    }
 }
 
 void MainWindow::contactLost() {
@@ -182,6 +230,7 @@ void MainWindow::stopTimer() {
     if (timerWidget) {
         delete timerWidget;
         timerWidget = nullptr;
+        ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(153, 193, 241);}");
     }
 }
 
