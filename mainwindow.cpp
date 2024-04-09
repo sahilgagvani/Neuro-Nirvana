@@ -124,6 +124,7 @@ void MainWindow::on_stopButton_released(){
 
 void MainWindow::on_playButton_released()
 {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     ui->menuLayout->hide(); // hides current menu screen
     if (highlighted==1){ // timer will only be started when the user is on New Session
@@ -139,6 +140,13 @@ void MainWindow::on_playButton_released()
         disconnectTimerRunning = false;
         MainWindow::startTreatment(); // resumes treatment session
 >>>>>>> 445f962 (Added disconnect button and timer for testing, refined lights)
+=======
+    if (disconnectTimerRunning) { // reestablish contact
+        ui->disconnectLayout->hide();
+        ui->sessionLayout->show();
+        disconnectTimerRunning = false;
+        MainWindow::startTreatment(); // resumes treatment session
+>>>>>>> Stashed changes
     } else {
         ui->menuLayout->hide(); // hides current menu screen
         if (highlighted==1){ // timer will only be started when the user is on New Session
@@ -147,6 +155,10 @@ void MainWindow::on_playButton_released()
             ui->sessionLayout->show();
         } else if (highlighted==2){
             ui->logLayout->show();
+<<<<<<< Updated upstream
+=======
+            MainWindow::displaySessionLogs();
+>>>>>>> Stashed changes
         } else {
             ui->timeAndDateLayout->show();
         }
