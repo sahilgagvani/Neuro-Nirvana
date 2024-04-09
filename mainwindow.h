@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QDate>
 #include <QTime>
+#include "centralprocessor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -42,6 +43,7 @@ private:
     QWidget *timerWidget;
     QLabel *timerlabel;
     QTimer *timer;
+    centralprocessor headset;
     void disableButtons(bool);
 };
 #endif // MAINWINDOW_H
