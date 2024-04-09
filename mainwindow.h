@@ -29,6 +29,7 @@ public slots:
     void on_stopButton_released();
     void on_playButton_released();
     void on_pauseButton_released();
+    void on_disconnectButton_released();
     void createTimer();
     void startTreatment();
     void stopTimer();
@@ -42,9 +43,15 @@ private:
     int highlighted; // holds the index of the currently selected menu options
     QString currScreen; // holds the current screen - menu, new session, etc.
     QWidget *timerWidget;
+    QWidget *disconnectTimerWidget;
     QLabel *timerlabel;
     QTimer *timer;
+<<<<<<< HEAD
     centralprocessor headset;
+=======
+    bool disconnectTimerRunning;
+    int remainingTime;
+>>>>>>> 445f962 (Added disconnect button and timer for testing, refined lights)
     void disableButtons(bool);
 };
 #endif // MAINWINDOW_H
