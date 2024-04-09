@@ -13,6 +13,7 @@ public:
 
 private:
     std::list<electrode> electrodes;
+    int treatements;
 };
 
 #endif // CENTRALPROCESSOR_H
