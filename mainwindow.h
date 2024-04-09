@@ -34,6 +34,7 @@ public slots:
     void stopTimer();
     void pauseTimer();
     void contactLost();
+    void displaySessionLogs();
 
 private:
     Ui::MainWindow *ui;

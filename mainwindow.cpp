@@ -1,8 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "qdebug.h"
+#include <iostream>
+#include <fstream>
 #include <QMessageBox>
 
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -114,10 +117,10 @@ void MainWindow::on_playButton_released()
     ui->menuLayout->hide(); // hides current menu screen
     if (highlighted==1){ // timer will only be started when the user is on New Session
         MainWindow::startTreatment();
-        MainWindow:createTimer();
+        MainWindow::createTimer();
         ui->sessionLayout->show();
     } else if (highlighted==2){
-
+        MainWindow::displaySessionLogs();
     } else {
         ui->timeAndDateLayout->show();
     }
@@ -236,8 +239,18 @@ void MainWindow::stopTimer() {
 
 void MainWindow::pauseTimer() {
     timer->stop();
-
 }
 
+void MainWindow::displaySessionLogs(){
+    fstream dataFile;
+    dataFile.open("savedLogs.txt",fstream::in);
+
+    if(dataFile){
+
+    }
+
+    dataFile.close();
+
+}
 
 
