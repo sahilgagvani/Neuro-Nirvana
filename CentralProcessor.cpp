@@ -1,4 +1,4 @@
-#include "centralProcessor.h"
+#include "CentralProcessor.h"
 #include <iostream>
 #include <fstream>
 
@@ -8,8 +8,7 @@ using namespace std;
 CentralProcessor::CentralProcessor(QObject *parent):QObject(parent){
     // Initialize all the electrodes
     for (int i = 0; i < numElectrodes; i++){
-        Electrode* electrode = new Electrode();
-        electrodes.push_back(electrode);
+        electrodes[i] = new Electrode();
     }
 }
 
@@ -17,7 +16,7 @@ CentralProcessor::~CentralProcessor(){
     // Free all the allocated memory
     for (int i = 0; i < numElectrodes; i++){
         delete electrodes[i];
-        electrodes[i] = nullptr;
+        //electrodes[i] = nullptr;
     }
 }
 
