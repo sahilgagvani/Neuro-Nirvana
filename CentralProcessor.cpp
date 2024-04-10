@@ -1,4 +1,4 @@
-#include "CentralProcessor.h"
+#include "centralProcessor.h"
 #include <iostream>
 #include <fstream>
 

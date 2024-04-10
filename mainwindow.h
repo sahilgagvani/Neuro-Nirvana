@@ -46,7 +46,7 @@ private:
     QWidget *disconnectTimerWidget;
     QLabel *timerlabel;
     QTimer *timer;
-    centralprocessor headset;
+    CentralProcessor headset;
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
