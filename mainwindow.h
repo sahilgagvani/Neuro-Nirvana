@@ -9,7 +9,7 @@
 #include <QLabel>
 #include <QDate>
 #include <QTime>
-#include "centralprocessor.h"
+#include "CentralProcessor.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
