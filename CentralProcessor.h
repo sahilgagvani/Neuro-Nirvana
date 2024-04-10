@@ -9,7 +9,7 @@ class CentralProcessor : public QObject {
     Q_OBJECT;
 
     private:
-        std::list<Electrode> electrodes;
+        std::list<Electrode*> electrodes;
 
         int numTreatments = 4;
         int numElectrodes = 7;
