@@ -5,10 +5,11 @@
 #include <QTimer>
 #include <QDialog>
 #include <QHBoxLayout>
-#include <QTime>
+#include <QDateTime>
 #include <QLabel>
 #include <QDate>
 #include <QTime>
+#include <QDateTimeEdit>
 #include "CentralProcessor.h"
 
 QT_BEGIN_NAMESPACE
@@ -46,6 +47,8 @@ private:
     QWidget *disconnectTimerWidget;
     QLabel *timerlabel;
     QTimer *timer;
+    QDateTimeEdit* date;
+    QDateTimeEdit* time;
     CentralProcessor headset;
     bool disconnectTimerRunning;
     int remainingTime;

@@ -26,9 +26,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     MainWindow::disableButtons(true);// disables buttons until power button is pressed
 
+    QTime currTime = QTime();
+    QDate currDate = QDate();
+    date = new QDateTimeEdit(currDate.currentDate(),ui->currDate);
+    time = new QDateTimeEdit(currTime.currentTime(),ui->currTime);
+    date->setDisplayFormat("yyyy-MM-dd");
+    time ->setDisplayFormat("HH:mm:ss");
     // for updating the time (still static)
-    ui->currTime->setText(QTime::currentTime().toString("h:mm:ss AP")); // seconds will be removed once dyanmic updating is implemented.
-    ui->currDate->setText(QDate::currentDate().toString("MMMM d yyyy"));
+    //ui->currTime->setText(QTime::currentTime().toString("h:mm:ss AP")); // seconds will be removed once dyanmic updating is implemented.
+    //ui->currDate->setText(QDate::currentDate().toString("MMMM d yyyy"));
     // to do Sahil: make the time label update in real time.
 
     ui->menuLayout->hide();
