@@ -16,35 +16,16 @@ CentralProcessor::~CentralProcessor(){
     // Free all the allocated memory
     for (int i = 0; i < numElectrodes; i++){
         delete electrodes[i];
-        //electrodes[i] = nullptr;
     }
 }
 
-double CentralProcessor::calculateDominantFrequency(Electrode* elec){
 
-    // Calculate the dominant frequency given the 4 waves
-    double alpha_amp_squared = (elec->get_alpha_amp() * elec->get_alpha_amp());
-    double beta_amp_squared = (elec->get_beta_amp() * elec->get_beta_amp());
-    double delta_amp_squared = (elec->get_delta_amp() * elec->get_delta_amp());
-    double theta_amp_squared = (elec->get_theta_amp() * elec->get_theta_amp());
-
-    double alpha_calc = elec->get_alpha_freq() * alpha_amp_squared;
-    double beta_calc = elec->get_beta_freq() * beta_amp_squared;
-    double delta_calc = elec->get_delta_freq() * delta_amp_squared;
-    double theta_calc = elec->get_theta_freq() * theta_amp_squared;
-
-    return (alpha_calc + beta_calc + delta_calc + theta_calc) / (alpha_amp_squared + beta_amp_squared + delta_amp_squared + theta_amp_squared);
-}
-
-
+// Baseline frequency is the average of all dominant frequencies
 double CentralProcessor::calculateBaselineFrequency(){
-    // I'm RELATIVELY sure that a baseline frequency is the average of all dominant frequencies
-    // That's what the sepcs say, but I'll ask
-
     double sumOfFrequencies = 0;
 
     for (int i = 0; i < numElectrodes; i++){
-        sumOfFrequencies += calculateDominantFrequency(electrodes[i]);
+        sumOfFrequencies += electrodes[i]->calculateDominantFrequency();
     }
 
     return sumOfFrequencies / numElectrodes;
@@ -52,12 +33,48 @@ double CentralProcessor::calculateBaselineFrequency(){
 
 
 
+// Apply ONE ROUND of treatment
 void CentralProcessor::applyTreatmentRound(){
-    // Probably implement some signals here that will send text for the main window console to print
-
-    // Getting mixed answers on how to update each wave, so I'll wait for clarification
+    double newOffsetFreq = offsetFreq / 16;
+    
+    
+    // Might add a slight random offset here to make the waves different, tbd
+    
+    
+    // Loop over all electrodes to deliver treatment
+    for (int i = 0; i < numElectrodes; i++){
+    	
+    	// Apply the 1/16th of the offset to each electrodes frequencies
+    	for (int j = 0; j < 16; j++){
+            electrodes[i]->applyOffset(newOffsetFreq);
+    	}
+    	
+    	
+    	// Calculate the new dominant frequency for the electrode
+    	// Update that variable in the electrode object
+    	double newDomFreq = electrodes[i]->calculateDominantFrequency();
+    	electrodes[i]->set_dominant_freq(newDomFreq);
+    }
 }
 
+
+void CentralProcessor::fullTreatment(){
+    // Calculate the baseline frequency before treatments
+    double startingBaseline = calculateBaselineFrequency();
+    
+    // Print results to console / graph
+    
+    
+    // Apply 4 rounds of treatment, each time recalculating the dominant frequencies
+    for (int i = 0; i < numTreatments; i++){
+    	applyTreatmentRound();
+    }
+    
+    
+    double endingBaseline = calculateBaselineFrequency();
+    
+    // Print results to console / graph    
+}
 
 //To save the current session log, todo: Ashneet
 void CentralProcessor::saveData(){
