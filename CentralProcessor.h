@@ -19,14 +19,13 @@ class CentralProcessor : public QObject {
         CentralProcessor(QObject *parent = nullptr);
         ~CentralProcessor();
 
-        // Dominant frequency for a single electrode
-        double calculateDominantFrequency(Electrode*);
-
         // Baseline frequency is the average of all dominant frequencies
         double calculateBaselineFrequency();
 
         void applyTreatmentRound();
-
+        
+        void applyFullTreatment();
+        
         void saveData();
 
 };
