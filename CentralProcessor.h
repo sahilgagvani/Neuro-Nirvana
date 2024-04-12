@@ -27,6 +27,7 @@ class CentralProcessor : public QObject {
         void applyFullTreatment();
         
         void saveData();
+        void fullTreatment();
 
 };
 
