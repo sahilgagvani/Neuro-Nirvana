@@ -15,6 +15,9 @@ Electrode::Electrode(QObject *parent):QObject(parent){
     beta_freq = rand() % 30 + 12;
     delta_freq = rand() % 4 + 1;
     theta_freq = rand() % 8 + 4;
+    
+    
+    currentDominantFrequency = calculateDominantFrequency();
 }
 
 
@@ -25,3 +28,20 @@ void Electrode::applyOffset(int oVal){
     delta_freq += oVal;
     theta_freq += oVal;
 }
+
+double Electrode::calculateDominantFrequency(){
+
+    // Calculate the dominant frequency given the 4 waves following the formula we got
+    double alpha_amp_squared = alpha_amp * alpha_amp;
+    double beta_amp_squared = beta_amp * beta_amp;
+    double delta_amp_squared = delta_amp * delta_amp;
+    double theta_amp_squared = theta_amp * theta_amp;
+
+    double alpha_calc = alpha_freq * alpha_amp_squared;
+    double beta_calc = beta_freq * beta_amp_squared;
+    double delta_calc = delta_freq * delta_amp_squared;
+    double theta_calc = theta_freq * theta_amp_squared;
+
+    return (alpha_calc + beta_calc + delta_calc + theta_calc) / (alpha_amp_squared + beta_amp_squared + delta_amp_squared + theta_amp_squared);
+}
+
