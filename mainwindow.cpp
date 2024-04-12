@@ -117,10 +117,16 @@ void MainWindow::on_menuButton_released(){
         ui->sessionLayout->hide();
     } else if (ui->logLayout->isVisible()) {
         ui->logLayout->hide();
-    } else {
+    } else if (ui->timeAndDateLayout->isVisible()){
         ui->timeAndDateLayout->hide();
     }
-    ui->menuLayout->show();
+
+    if (ui->menuLayout->isVisible()){ // if we are currently on the menu screen, go to the session screen
+        ui->sessionLayout->show();
+        ui->menuLayout->hide();
+    } else {                          // otherwise go to the menu screen
+        ui->menuLayout->show();
+    }
 }
 
 void MainWindow::on_stopButton_released(){
@@ -183,6 +189,7 @@ void MainWindow::createTimer(){
     timer = new QTimer(timerWidget);
     timer->setInterval(1000); // Update every second
     ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(28, 113, 216);}");
+    ui->progressBar->setValue(0);
 
     // Connect the timer timeout signal to update the countdown label
     bool connected = connect(timer, &QTimer::timeout, [=]() {
@@ -196,6 +203,7 @@ void MainWindow::createTimer(){
         // Updating the timer label
         QString timeString = QString("%1:%2").arg(minutes, 1, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')); // basic formatting
         timerLabel->setText(timeString);
+        ui->progressBar->setValue(100 - seconds /60.0 * 100);
 
         if (counter == 0) {
             delete timerWidget;
