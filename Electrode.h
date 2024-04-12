@@ -21,12 +21,17 @@ class Electrode : public QObject {
 
         int theta_freq = 0;
         int theta_amp = 0;
+        
+        int currentDominantFrequency = 0;
 
 
     public:
         Electrode(QObject *parent = nullptr);
 
         void applyOffset(int);
+        
+        // Calculates the dominant frequency
+        double calculateDominantFrequency();
 
         // Getters
         int get_alpha_freq(){ return alpha_freq; }
@@ -42,6 +47,7 @@ class Electrode : public QObject {
         int get_theta_amp(){ return theta_amp; }
 
         // Setters
+        void set_dominant_freq(double newFreq){ currentDominantFrequency = newFreq; }
 
 
 };
