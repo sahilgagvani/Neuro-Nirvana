@@ -28,7 +28,7 @@ class Electrode : public QObject {
     public:
         Electrode(QObject *parent = nullptr);
 
-        void applyOffset(int);
+        void applyOffset(double);
         
         // Calculates the dominant frequency
         double calculateDominantFrequency();
