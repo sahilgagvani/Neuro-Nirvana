@@ -21,7 +21,7 @@ Electrode::Electrode(QObject *parent):QObject(parent){
 }
 
 
-void Electrode::applyOffset(int oVal){
+void Electrode::applyOffset(double oVal){
     // Apply the given offset to each wave's frequency
     alpha_freq += oVal;
     beta_freq += oVal;
