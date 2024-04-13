@@ -512,13 +512,35 @@ padding: 0px 5px 5px 5px;</string>
       <x>160</x>
       <y>210</y>
       <width>351</width>
-      <height>151</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(153, 193, 241);</string>
     </property>
-    <layout class="QGridLayout" name="gridLayout_3"/>
+    <layout class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Final Baseline</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Initial Baseline</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Date &amp; Time</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <widget class="QPushButton" name="disconnectButton">
     <property name="geometry">
@@ -546,28 +568,6 @@ padding: 0px 5px 5px 5px;</string>
      <string notr="true">background-color: rgb(153, 193, 241);</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
-     <item row="0" column="0">
-      <widget class="QLabel" name="timerLabel_2">
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(153, 193, 241);
-padding: 0px 5px 5px 5px;</string>
-       </property>
-       <property name="text">
-        <string>Contact lost: Press the Play button to reestablish contact</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-       </property>
-       <property name="wordWrap">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="timerLabel_3">
        <property name="font">
@@ -609,9 +609,30 @@ padding: 0px 5px 5px 5px;</string>
        </property>
       </widget>
      </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="timerLabel_2">
+       <property name="font">
+        <font>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(153, 193, 241);
+padding: 0px 5px 5px 5px;</string>
+       </property>
+       <property name="text">
+        <string>Contact lost: Press the Play button to reestablish contact</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
-   <zorder>logLayout</zorder>
    <zorder>screen</zorder>
    <zorder>menuButton</zorder>
    <zorder>upArrowButton</zorder>
@@ -630,6 +651,7 @@ padding: 0px 5px 5px 5px;</string>
    <zorder>label</zorder>
    <zorder>disconnectButton</zorder>
    <zorder>disconnectLayout</zorder>
+   <zorder>logLayout</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
