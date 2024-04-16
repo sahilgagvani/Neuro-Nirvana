@@ -10,7 +10,9 @@
 #include <QDate>
 #include <QTime>
 #include <QDateTimeEdit>
+#include <cmath>
 #include "CentralProcessor.h"
+#include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +39,8 @@ public slots:
     void pauseTimer();
     void contactLost();
     void displaySessionLogs();
+    
+    void drawGraph(int, int);
 
 private:
     Ui::MainWindow *ui;
