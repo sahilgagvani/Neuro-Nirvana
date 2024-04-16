@@ -12,13 +12,13 @@ SOURCES += \
     CentralProcessor.cpp \
     Electrode.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
     qcustomplot.cpp
 
 HEADERS += \
     CentralProcessor.h \
     Electrode.h \
-    mainwindow.h
+    mainwindow.h \
     qcustomplot.h
 
 FORMS += \

@@ -6,7 +6,7 @@
 #include <list>
 
 class CentralProcessor : public QObject {
-    Q_OBJECT;
+    Q_OBJECT
 
     private:
         Electrode* electrodes[21];
@@ -28,6 +28,9 @@ class CentralProcessor : public QObject {
         
         void saveData();
         void fullTreatment();
+
+    signals:
+        void graphUpdate(int, int);
 
 };
 

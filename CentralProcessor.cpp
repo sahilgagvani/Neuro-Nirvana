@@ -54,11 +54,13 @@ void CentralProcessor::applyTreatmentRound(){
     	// Update that variable in the electrode object
     	double newDomFreq = electrodes[i]->calculateDominantFrequency();
     	electrodes[i]->set_dominant_freq(newDomFreq);
+        emit graphUpdate(electrodes[i]->get_alpha_amp(), newDomFreq);
+        //emit graphUpdate(electrodes[i]->get_beta_amp(), electrodes[i]->get_beta_freq());
     }
 }
 
 
-void CentralProcessor::fullTreatment(){
+void CentralProcessor::applyFullTreatment(){
     // Calculate the baseline frequency before treatments
     double startingBaseline = calculateBaselineFrequency();
     

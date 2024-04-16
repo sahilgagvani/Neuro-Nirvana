@@ -17,12 +17,14 @@ MainWindow::MainWindow(QWidget *parent)
     highlighted = 1;
     remainingTime = 0;
     currScreen = "Menu";
+    headset = new CentralProcessor();
     menuStrings.push_back("Menu Options:"); // placeholder option to fill menuStrings[0] so that highlighted is the index of the correct option in menuStrings
     menuStrings.push_back("New Session");
     menuStrings.push_back("Session Log");
     menuStrings.push_back("Time and Date");
     connect(ui->upArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
     connect(ui->downArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
+    connect(headset, SIGNAL(graphUpdate(int, int)), this, SLOT(drawGraph(int, int)));
 
     MainWindow::disableButtons(true);// disables buttons until power button is pressed
 
@@ -178,16 +180,16 @@ void MainWindow::drawGraph(int amp, int freq){
     }
 
     // Make sure we have a widget of type "QCustomPlot" in the UI, and then replace "widget" with the actual name
-    //ui->widget->addGraph();
-    //ui->widget->graph(0)->setData(x, y);
+    ui->wavePlot->addGraph();
+    ui->wavePlot->graph(0)->setData(x, y);
 
-    //ui->widget->xAxis->setLabel("x");
-    //ui->widget->yAxis->setLabel("y");
+    ui->wavePlot->xAxis->setLabel("x");
+    ui->wavePlot->yAxis->setLabel("y");
 
-    //ui->widget->xAxis->setRange(-freq, freq);
-    //ui->widget->yAxis->setRange(-amp, amp);
+    ui->wavePlot->xAxis->setRange(-freq, freq);
+    ui->wavePlot->yAxis->setRange(-amp, amp);
 
-    //ui->widget->replot();
+    ui->wavePlot->replot();
 }
 
 
@@ -258,6 +260,7 @@ void MainWindow::startTreatment() {
     if (counter == 60 ){
         ui->batteryBar->setValue(ui->batteryBar->value() - 33);
     }
+    headset->applyFullTreatment();
 
     if ((ui->batteryBar->value() <= 1)) {
         QMessageBox batteryDead;

@@ -633,6 +633,16 @@ padding: 0px 5px 5px 5px;</string>
      </item>
     </layout>
    </widget>
+   <widget class="QCustomPlot" name="wavePlot" native="true">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>10</y>
+      <width>251</width>
+      <height>141</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>screen</zorder>
    <zorder>menuButton</zorder>
    <zorder>upArrowButton</zorder>
@@ -652,6 +662,7 @@ padding: 0px 5px 5px 5px;</string>
    <zorder>disconnectButton</zorder>
    <zorder>disconnectLayout</zorder>
    <zorder>logLayout</zorder>
+   <zorder>wavePlot</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -665,6 +676,14 @@ padding: 0px 5px 5px 5px;</string>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="Resources.qrc"/>
  </resources>
