@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     CentralProcessor.cpp \
     Electrode.cpp \
+    graphwindow.cpp \
     main.cpp \
     mainwindow.cpp \
     qcustomplot.cpp
@@ -18,10 +19,12 @@ SOURCES += \
 HEADERS += \
     CentralProcessor.h \
     Electrode.h \
+    graphwindow.h \
     mainwindow.h \
     qcustomplot.h
 
 FORMS += \
+    graphwindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.

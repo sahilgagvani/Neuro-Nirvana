@@ -16,8 +16,7 @@
 #include "graphwindow.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow;
-             class Widget;}
+namespace Ui { class MainWindow;}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -46,7 +45,6 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    Ui::Widget *graphWindow;
     std::list<QString> menuStrings; // list of the menu options displayed on the screen
     int highlighted; // holds the index of the currently selected menu options
     QString currScreen; // holds the current screen - menu, new session, etc.
@@ -56,6 +54,7 @@ private:
     QTimer *timer;
     QDateTimeEdit* date;
     QDateTimeEdit* time;
+    GraphWindow* graphWin;
     CentralProcessor* headset;
     bool disconnectTimerRunning;
     int remainingTime;

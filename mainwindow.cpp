@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ui_graphwindow.h"
+#include "graphwindow.h"
 #include "qdebug.h"
 #include <iostream>
 #include <fstream>
@@ -14,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     , disconnectTimerWidget(nullptr)
 {
     ui->setupUi(this);
+    graphWin = new GraphWindow();
     highlighted = 1;
     remainingTime = 0;
     currScreen = "Menu";
@@ -169,6 +172,10 @@ void MainWindow::on_disconnectButton_released(){
 
 
 void MainWindow::drawGraph(int amp, int freq){
+    // illuminate green light when treatment is being delivered
+    ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(51, 209, 122);}");
+    graphWin->show();
+
     double period = (2*M_PI) / freq;
 
     // Generate points to plot
@@ -179,17 +186,16 @@ void MainWindow::drawGraph(int amp, int freq){
       y[i] = amp * qSin(period * x[i]);
     }
 
-    // Make sure we have a widget of type "QCustomPlot" in the UI, and then replace "widget" with the actual name
-    ui->wavePlot->addGraph();
-    ui->wavePlot->graph(0)->setData(x, y);
+    graphWin->ui->wavePlot->addGraph();
+    graphWin->ui->wavePlot->graph(0)->setData(x, y);
 
-    ui->wavePlot->xAxis->setLabel("x");
-    ui->wavePlot->yAxis->setLabel("y");
+    graphWin->ui->wavePlot->xAxis->setLabel("x");
+    graphWin->ui->wavePlot->yAxis->setLabel("y");
 
-    ui->wavePlot->xAxis->setRange(-freq, freq);
-    ui->wavePlot->yAxis->setRange(-amp, amp);
+    graphWin->ui->wavePlot->xAxis->setRange(-freq, freq);
+    graphWin->ui->wavePlot->yAxis->setRange(-amp, amp);
 
-    ui->wavePlot->replot();
+    graphWin->ui->wavePlot->replot();
 }
 
 
@@ -236,6 +242,8 @@ void MainWindow::createTimer(){
         if (counter == 0) {
             delete timerWidget;
             timerWidget = nullptr;
+            graphWin->hide();
+            ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
             ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(153, 193, 241);}");
             counter=60;
             //timer->stop(); // Stop the timer
@@ -304,7 +312,8 @@ void MainWindow::contactLost() {
     QTimer* disconnectTimer = new QTimer(disconnectTimerWidget);
     disconnectTimer->setInterval(1000); // Update every second
 
-    // turn blue light off and red light on
+    // turn blue/green light off and red light on
+    ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
     ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(153, 193, 241);}");
     ui->redLight->setStyleSheet("QPushButton{background-color: rgb(237, 51, 59);}");
 
