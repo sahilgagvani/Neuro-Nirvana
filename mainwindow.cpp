@@ -165,6 +165,32 @@ void MainWindow::on_disconnectButton_released(){
     MainWindow::contactLost();
 }
 
+
+void MainWindow::drawGraph(int amp, int freq){
+    double period = (2*M_PI) / freq;
+
+    // Generate points to plot
+    QVector<double> x(400), y(400);
+
+    for (int i=0; i<400; ++i){
+      x[i] = i/10.0 - freq;
+      y[i] = amp * qSin(period * x[i]);
+    }
+
+    // Make sure we have a widget of type "QCustomPlot" in the UI, and then replace "widget" with the actual name
+    //ui->widget->addGraph();
+    //ui->widget->graph(0)->setData(x, y);
+
+    //ui->widget->xAxis->setLabel("x");
+    //ui->widget->yAxis->setLabel("y");
+
+    //ui->widget->xAxis->setRange(-freq, freq);
+    //ui->widget->yAxis->setRange(-amp, amp);
+
+    //ui->widget->replot();
+}
+
+
 static int counter = 60; // Initialize counter to 1 minute - page 5 para 3 line 2
 static int counter2 = 10;
 
