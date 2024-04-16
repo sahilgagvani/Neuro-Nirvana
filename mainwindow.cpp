@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     menuStrings.push_back("Time and Date");
     connect(ui->upArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
     connect(ui->downArrowButton, SIGNAL(pressed()), this, SLOT(scroll()));
+    connect(graphWin->ui->electrodeDropdown, SIGNAL(currentIndexChanged(int)), this, SLOT(getElectrodeGraph(int)));
+    connect(this, SIGNAL(getElectrodeInfo(int)), headset, SLOT(singleElectrodeGraph(int)));
     connect(headset, SIGNAL(graphUpdate(int, int)), this, SLOT(drawGraph(int, int)));
 
     MainWindow::disableButtons(true);// disables buttons until power button is pressed
@@ -278,6 +280,10 @@ void MainWindow::startTreatment() {
         ui->sessionLayout->hide();
         MainWindow::on_powerButton_released();
     }
+}
+
+void MainWindow::getElectrodeGraph(int index) {
+    emit getElectrodeInfo(index - 1);
 }
 
 void MainWindow::contactLost() {

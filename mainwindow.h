@@ -40,8 +40,8 @@ public slots:
     void pauseTimer();
     void contactLost();
     void displaySessionLogs();
-    
     void drawGraph(int, int);
+    void getElectrodeGraph(int);
 
 private:
     Ui::MainWindow *ui;
@@ -59,5 +59,8 @@ private:
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
+
+signals:
+    void getElectrodeInfo(int);
 };
 #endif // MAINWINDOW_H

@@ -29,8 +29,12 @@ class CentralProcessor : public QObject {
         void saveData();
         void fullTreatment();
 
+    public slots:
+        void singleElectrodeGraph(int);
+
     signals:
         void graphUpdate(int, int);
+        void getElectrodeInfo(int);
 
 };
 

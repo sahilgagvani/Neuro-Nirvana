@@ -47,7 +47,7 @@ void CentralProcessor::applyTreatmentRound(){
     	// Apply the 1/16th of the offset to each electrodes frequencies
     	for (int j = 0; j < 16; j++){
             electrodes[i]->applyOffset(newOffsetFreq);
-    	}
+        }
     	
     	
     	// Calculate the new dominant frequency for the electrode
@@ -55,10 +55,16 @@ void CentralProcessor::applyTreatmentRound(){
     	double newDomFreq = electrodes[i]->calculateDominantFrequency();
     	electrodes[i]->set_dominant_freq(newDomFreq);
         emit graphUpdate(electrodes[i]->get_alpha_amp(), newDomFreq);
-        //emit graphUpdate(electrodes[i]->get_beta_amp(), electrodes[i]->get_beta_freq());
     }
 }
 
+void CentralProcessor::singleElectrodeGraph(int index) {
+    if (index < 0) {
+        emit graphUpdate(electrodes[0]->get_alpha_amp(), electrodes[0]->get_dominant_freq());
+    } else {
+        emit graphUpdate(electrodes[index]->get_beta_amp(), electrodes[index]->get_beta_freq());
+    }
+}
 
 void CentralProcessor::applyFullTreatment(){
     // Calculate the baseline frequency before treatments

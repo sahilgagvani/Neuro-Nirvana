@@ -46,6 +46,8 @@ class Electrode : public QObject {
         int get_theta_freq(){ return theta_freq; }
         int get_theta_amp(){ return theta_amp; }
 
+        int get_dominant_freq(){ return currentDominantFrequency; }
+
         // Setters
         void set_dominant_freq(double newFreq){ currentDominantFrequency = newFreq; }
 
