@@ -512,7 +512,7 @@ padding: 0px 5px 5px 5px;</string>
       <x>160</x>
       <y>210</y>
       <width>351</width>
-      <height>31</height>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -538,6 +538,23 @@ padding: 0px 5px 5px 5px;</string>
        <property name="text">
         <string>Date &amp; Time</string>
        </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="3">
+      <widget class="QScrollArea" name="scrollArea">
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>331</width>
+          <height>108</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>

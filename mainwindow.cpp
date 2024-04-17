@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <QMessageBox>
+#include <QGridLayout>
 
 using namespace std;
 
@@ -13,9 +14,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , timerWidget(nullptr)
-    , disconnectTimerWidget(nullptr)
+    , disconnectTimerWidget(nullptr), gridLayout(new QGridLayout())
 {
     ui->setupUi(this);
+    ui->scrollArea->setWidgetResizable(true);
+    ui->scrollArea->widget()->setLayout(gridLayout);
     graphWin = new GraphWindow();
     highlighted = 1;
     remainingTime = 0;
@@ -378,7 +381,7 @@ void MainWindow::saveData(int initialBaseline, int finalBaseline){
     QTime currTime = time->time();
     QString dateString = currDate.currentDate().toString("MMMM d yyyy");
     QString timeString = currTime.currentTime().toString("hh:mm:ss");
-    dataFile << initialBaseline << "," << finalBaseline << "," << dateString.toStdString() << "," << timeString.toStdString()<<"\n";
+    dataFile << initialBaseline << "                             " << finalBaseline <<"                    " << dateString.toStdString() << " " << timeString.toStdString()<<"\n";
     qDebug()<< "wrote to file";
 
     dataFile.close();
@@ -390,8 +393,13 @@ void MainWindow::displaySessionLogs(){
 
     if(dataFile){
         string line;
-        while(std::getline(dataFile,line)){
-            cout<<line<<endl;
+        //int row = 0;
+        //int column = 0;
+        while(getline(dataFile,line)){
+            char arr[line.length() + 1];
+            strcpy(arr,line.c_str());
+            QLabel *info = new QLabel(arr);
+            ui->scrollArea->widget()->layout()->addWidget(info);
         }
     }
 

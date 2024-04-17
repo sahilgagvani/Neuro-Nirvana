@@ -57,6 +57,7 @@ private:
     QDateTimeEdit* time;
     GraphWindow* graphWin;
     CentralProcessor* headset;
+    QGridLayout *gridLayout;
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
