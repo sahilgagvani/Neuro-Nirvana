@@ -10,6 +10,8 @@ CentralProcessor::CentralProcessor(QObject *parent):QObject(parent){
     for (int i = 0; i < numElectrodes; i++){
         electrodes[i] = new Electrode();
     }
+
+    srand(time(NULL));
 }
 
 CentralProcessor::~CentralProcessor(){
@@ -29,6 +31,17 @@ double CentralProcessor::calculateBaselineFrequency(){
     }
 
     return sumOfFrequencies / numElectrodes;
+}
+
+
+double CentralProcessor::calculateBaselineAmplitude(){
+    double sumOfAmplitudes = 0;
+
+    for (int i = 0; i < numElectrodes; i++){
+        sumOfAmplitudes += electrodes[i]->getAverageAmplitude();
+    }
+
+    return sumOfAmplitudes / numElectrodes;
 }
 
 
@@ -54,6 +67,7 @@ void CentralProcessor::applyTreatmentRound(){
     	// Update that variable in the electrode object
     	double newDomFreq = electrodes[i]->calculateDominantFrequency();
     	electrodes[i]->set_dominant_freq(newDomFreq);
+        
         emit graphUpdate(electrodes[i]->get_alpha_amp(), newDomFreq);
     }
 }
@@ -69,6 +83,7 @@ void CentralProcessor::singleElectrodeGraph(int index) {
 void CentralProcessor::applyFullTreatment(){
     // Calculate the baseline frequency before treatments
     double startingBaseline = calculateBaselineFrequency();
+    double baselineAmplitude = calculateBaselineAmplitude();
     
     // Print results to console / graph
     

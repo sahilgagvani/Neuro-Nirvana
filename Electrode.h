@@ -22,7 +22,8 @@ class Electrode : public QObject {
         int theta_freq = 0;
         int theta_amp = 0;
         
-        int currentDominantFrequency = 0;
+        double currentDominantFrequency = 0;
+        double averageAmplitude = 0;
 
 
     public:
@@ -46,8 +47,9 @@ class Electrode : public QObject {
         int get_theta_freq(){ return theta_freq; }
         int get_theta_amp(){ return theta_amp; }
 
-        int get_dominant_freq(){ return currentDominantFrequency; }
-
+        double get_dominant_freq(){ return currentDominantFrequency; }
+        double getAverageAmplitude(){ return averageAmplitude; }
+        
         // Setters
         void set_dominant_freq(double newFreq){ currentDominantFrequency = newFreq; }
 

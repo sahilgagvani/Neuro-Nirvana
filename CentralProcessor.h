@@ -3,7 +3,6 @@
 
 #include "Electrode.h"
 #include <QObject>
-#include <list>
 
 class CentralProcessor : public QObject {
     Q_OBJECT
@@ -21,13 +20,15 @@ class CentralProcessor : public QObject {
 
         // Baseline frequency is the average of all dominant frequencies
         double calculateBaselineFrequency();
+        double calculateBaselineAmplitude();
 
         void applyTreatmentRound();
-        
         void applyFullTreatment();
         
         void saveData();
-        void fullTreatment();
+
+        Electrode* getElectrode(int index){ return electrodes[index]; }
+
 
     public slots:
         void singleElectrodeGraph(int);
