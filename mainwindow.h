@@ -42,6 +42,7 @@ public slots:
     void displaySessionLogs();
     void drawGraph(int, int);
     void getElectrodeGraph(int);
+    void saveData(int,int);
 
 private:
     Ui::MainWindow *ui;

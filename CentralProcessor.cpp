@@ -95,18 +95,9 @@ void CentralProcessor::applyFullTreatment(){
     
     
     double endingBaseline = calculateBaselineFrequency();
+
+    emit sendSaveData(startingBaseline, endingBaseline);
     
     // Print results to console / graph    
 }
 
-//To save the current session log, todo: Ashneet
-void CentralProcessor::saveData(){
-    fstream dataFile;
-    dataFile.open("savedLogs.txt",fstream::app);
-
-    if(!dataFile){
-        dataFile.open("savedLogs.txt",fstream::out);
-    }
-
-    dataFile.close();
-}

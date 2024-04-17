@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(graphWin->ui->electrodeDropdown, SIGNAL(currentIndexChanged(int)), this, SLOT(getElectrodeGraph(int)));
     connect(this, SIGNAL(getElectrodeInfo(int)), headset, SLOT(singleElectrodeGraph(int)));
     connect(headset, SIGNAL(graphUpdate(int, int)), this, SLOT(drawGraph(int, int)));
+    connect(headset, SIGNAL(sendSaveData(int,int)), this, SLOT(saveData(int,int)));
 
     MainWindow::disableButtons(true);// disables buttons until power button is pressed
 
@@ -58,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    //remove("savedLogs.txt");
     delete ui;
 }
 
@@ -364,12 +366,33 @@ void MainWindow::pauseTimer() {
     timer->stop();
 }
 
+void MainWindow::saveData(int initialBaseline, int finalBaseline){
+    fstream dataFile;
+    dataFile.open("savedLogs.txt",fstream::app);
+
+    if(!dataFile){
+        dataFile.open("savedLogs.txt",fstream::out);
+        qDebug()<<"Creating file";
+    }
+    QDate currDate = date->date();
+    QTime currTime = time->time();
+    QString dateString = currDate.currentDate().toString("MMMM d yyyy");
+    QString timeString = currTime.currentTime().toString("hh:mm:ss");
+    dataFile << initialBaseline << "," << finalBaseline << "," << dateString.toStdString() << "," << timeString.toStdString()<<"\n";
+    qDebug()<< "wrote to file";
+
+    dataFile.close();
+}
+
 void MainWindow::displaySessionLogs(){
     fstream dataFile;
     dataFile.open("savedLogs.txt",fstream::in);
 
     if(dataFile){
-
+        string line;
+        while(std::getline(dataFile,line)){
+            cout<<line<<endl;
+        }
     }
 
     dataFile.close();

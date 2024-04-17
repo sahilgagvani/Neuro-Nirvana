@@ -24,8 +24,6 @@ class CentralProcessor : public QObject {
 
         void applyTreatmentRound();
         void applyFullTreatment();
-        
-        void saveData();
 
         Electrode* getElectrode(int index){ return electrodes[index]; }
 
@@ -36,6 +34,7 @@ class CentralProcessor : public QObject {
     signals:
         void graphUpdate(int, int);
         void getElectrodeInfo(int);
+        void sendSaveData(int,int);
 
 };
 
