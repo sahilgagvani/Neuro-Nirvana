@@ -3,6 +3,7 @@
 
 #include "Electrode.h"
 #include <QObject>
+#include <QDebug>
 
 class CentralProcessor : public QObject {
     Q_OBJECT

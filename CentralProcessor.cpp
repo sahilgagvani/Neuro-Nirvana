@@ -47,26 +47,22 @@ double CentralProcessor::calculateBaselineAmplitude(){
 // Apply ONE ROUND of treatment
 void CentralProcessor::applyTreatmentRound(){
     double newOffsetFreq = offsetFreq / 16;
-    
-    
-    // Might add a slight random offset here to make the waves different, tbd
-    
-    
+
     // Loop over all electrodes to deliver treatment
     for (int i = 0; i < numElectrodes; i++){
-    	
-    	// Apply the 1/16th of the offset to each electrodes frequencies
-    	for (int j = 0; j < 16; j++){
+
+        // Apply the 1/16th of the offset to each electrodes frequencies
+        for (int j = 0; j < 16; j++){
             electrodes[i]->applyOffset(newOffsetFreq);
         }
-    	
-    	
-    	// Calculate the new dominant frequency for the electrode
-    	// Update that variable in the electrode object
-    	double newDomFreq = electrodes[i]->calculateDominantFrequency();
-    	electrodes[i]->set_dominant_freq(newDomFreq);
-        
+
+        // Calculate the new dominant frequency for the electrode
+        // Update that variable in the electrode object
+        double newDomFreq = electrodes[i]->calculateDominantFrequency();
+        electrodes[i]->set_dominant_freq(newDomFreq);
+
         emit graphUpdate(electrodes[i]->get_alpha_amp(), newDomFreq);
+        qInfo("Added offset of %.2f hz to electrode %d", offsetFreq, i+1);
     }
 }
 
@@ -82,20 +78,24 @@ void CentralProcessor::applyFullTreatment(){
     // Calculate the baseline frequency before treatments
     double startingBaseline = calculateBaselineFrequency();
     double baselineAmplitude = calculateBaselineAmplitude();
-    
-    // Print results to console / graph
-    
-    
+
+    // Update display and log changes
+    emit graphUpdate(startingBaseline, baselineAmplitude);
+    qInfo("Initial baseline frequency: %.2fhz", startingBaseline);
+
+
     // Apply 4 rounds of treatment, each time recalculating the dominant frequencies
     for (int i = 0; i < numTreatments; i++){
-    	applyTreatmentRound();
+        qInfo("\nStarting round %d of %d treatments", i+1, numTreatments);
+        applyTreatmentRound();
+        qInfo("Ending round %d of %d treatments", i+1, numTreatments);
     }
-    
-    
+
     double endingBaseline = calculateBaselineFrequency();
 
+    // Print results to console / graph
+    emit graphUpdate(endingBaseline, baselineAmplitude);
     emit sendSaveData(startingBaseline, endingBaseline);
-    
-    // Print results to console / graph    
-}
 
+    qInfo("\nFinal baseline frequency: %.2fhz", endingBaseline);
+}
