@@ -61,6 +61,7 @@ private:
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
+    void deletePreSessions();
 
 signals:
     void getElectrodeInfo(int);

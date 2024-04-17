@@ -392,6 +392,7 @@ void MainWindow::displaySessionLogs(){
     dataFile.open("savedLogs.txt",fstream::in);
 
     if(dataFile){
+        deletePreSessions();
         string line;
         //int row = 0;
         //int column = 0;
@@ -404,6 +405,14 @@ void MainWindow::displaySessionLogs(){
     }
 
     dataFile.close();
+}
+
+void MainWindow::deletePreSessions(){
+    QLayoutItem* widget;
+    while((widget = ui->scrollArea->widget()->layout()->takeAt(0)) != 0){
+        widget->widget()->setParent(NULL);
+        delete widget;
+    }
 }
 
 
