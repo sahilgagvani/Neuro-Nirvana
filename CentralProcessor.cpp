@@ -10,8 +10,6 @@ CentralProcessor::CentralProcessor(QObject *parent):QObject(parent){
     for (int i = 0; i < numElectrodes; i++){
         electrodes[i] = new Electrode();
     }
-
-    srand(time(NULL));
 }
 
 CentralProcessor::~CentralProcessor(){

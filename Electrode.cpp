@@ -1,19 +1,28 @@
 #include "Electrode.h"
 
 Electrode::Electrode(QObject *parent):QObject(parent){
-    // Generate a random number for the amplitudes in the range 0 to 5 (non inclusive)
-    alpha_amp = rand() % 5 + 1;
-    beta_amp = rand() % 5 + 1;
-    delta_amp = rand() % 5 + 1;
-    theta_amp = rand() % 5 + 1;
+    // Create a random number generator
+    random_device dev;
+    mt19937 rng(dev());
+  
+    uniform_int_distribution<int> amp(1,5);
+    uniform_real_distribution<double> aFreq(8,12);
+    uniform_real_distribution<double> bFreq(12,30);
+    uniform_real_distribution<double> dFreq(1,4);
+    uniform_real_distribution<double> tFreq(4,8);
 
+    // Generate a random number for the amplitudes in the range 0 to 5 (non inclusive)
+    alpha_amp = amp(rng);
+    beta_amp = amp(rng);
+    delta_amp = amp(rng);
+    theta_amp = amp(rng);
 
     // Generate a random frequency within the range defined for each wave
-    alpha_freq = rand() % 12 + 8;
-    beta_freq = rand() % 30 + 12;
-    delta_freq = rand() % 4 + 1;
-    theta_freq = rand() % 8 + 4;
-    
+    alpha_freq = aFreq(rng);
+    beta_freq = bFreq(rng);
+    delta_freq = dFreq(rng);
+    theta_freq = tFreq(rng);
+
     currentDominantFrequency = calculateDominantFrequency();
     averageAmplitude = (alpha_amp + beta_amp + delta_amp + theta_amp) / 4;
 }

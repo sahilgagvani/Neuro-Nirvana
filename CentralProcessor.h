@@ -12,7 +12,7 @@ class CentralProcessor : public QObject {
 
         int numTreatments = 4;
         int numElectrodes = 7;
-        int offsetFreq = 5;
+        double offsetFreq = 5;
 
     public:
         CentralProcessor(QObject *parent = nullptr);
