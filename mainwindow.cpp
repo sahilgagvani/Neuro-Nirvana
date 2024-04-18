@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(graphWin->ui->electrodeDropdown, SIGNAL(currentIndexChanged(int)), this, SLOT(getElectrodeGraph(int)));
     connect(this, SIGNAL(getElectrodeInfo(int)), headset, SLOT(singleElectrodeGraph(int)));
     connect(headset, SIGNAL(graphUpdate(int, int)), this, SLOT(drawGraph(int, int)));
-    connect(headset, SIGNAL(sendSaveData(int,int)), this, SLOT(saveData(int,int)));
+    connect(headset, SIGNAL(sendSaveData(int,int)), this, SLOT(saveBaselines(int,int)));
 
     MainWindow::disableButtons(true);// disables buttons until power button is pressed
 
@@ -67,7 +67,6 @@ MainWindow::~MainWindow()
     //remove("savedLogs.txt");
     delete ui;
 }
-
 
 void MainWindow::scroll() {
     QObject *senderButton = sender();
@@ -249,6 +248,7 @@ void MainWindow::createTimer(){
         ui->progressBar->setValue(100 - seconds /60.0 * 100);
 
         if (counter == 0) {
+            saveData(initialBaseline,finalBaseline);
             delete timerWidget;
             timerWidget = nullptr;
             graphWin->hide();
@@ -400,6 +400,11 @@ void MainWindow::saveData(int initialBaseline, int finalBaseline){
     qDebug()<< "wrote to file";
 
     dataFile.close();
+}
+
+void MainWindow::saveBaselines(int iBaseline, int fBaseline){
+    initialBaseline = iBaseline;
+    finalBaseline = fBaseline;
 }
 
 void MainWindow::displaySessionLogs(){

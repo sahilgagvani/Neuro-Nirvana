@@ -44,6 +44,7 @@ public slots:
     void getElectrodeGraph(int);
     void saveData(int,int);
     void updateBatteryLevel();
+    void saveBaselines(int,int);
 
 private:
     Ui::MainWindow *ui;
@@ -64,6 +65,8 @@ private:
     void disableButtons(bool);
     void deletePreSessions();
     int batteryLevel;
+    int initialBaseline;
+    int finalBaseline;
 
 signals:
     void getElectrodeInfo(int);
