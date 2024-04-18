@@ -62,11 +62,8 @@ private:
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
-<<<<<<< Updated upstream
     void deletePreSessions();
-=======
     int batteryLevel;
->>>>>>> Stashed changes
 
 signals:
     void getElectrodeInfo(int);
