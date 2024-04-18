@@ -477,27 +477,11 @@ padding: 0px 5px 5px 5px;</string>
      </item>
     </layout>
    </widget>
-   <widget class="QProgressBar" name="batteryBar">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>530</y>
-      <width>111</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(119, 118, 123);</string>
-    </property>
-    <property name="value">
-     <number>100</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>500</y>
+      <x>590</x>
+      <y>450</y>
       <width>62</width>
       <height>17</height>
      </rect>
@@ -650,6 +634,38 @@ padding: 0px 5px 5px 5px;</string>
      </item>
     </layout>
    </widget>
+   <widget class="QLabel" name="batteryBarImage">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>470</y>
+      <width>51</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="Resources.qrc">:/battery_4.jpeg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="batteryBar">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>550</y>
+      <width>118</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>24</number>
+    </property>
+   </widget>
    <zorder>screen</zorder>
    <zorder>menuButton</zorder>
    <zorder>upArrowButton</zorder>
@@ -664,11 +680,12 @@ padding: 0px 5px 5px 5px;</string>
    <zorder>menuLayout</zorder>
    <zorder>timeAndDateLayout</zorder>
    <zorder>sessionLayout</zorder>
-   <zorder>batteryBar</zorder>
    <zorder>label</zorder>
    <zorder>disconnectButton</zorder>
    <zorder>disconnectLayout</zorder>
    <zorder>logLayout</zorder>
+   <zorder>batteryBarImage</zorder>
+   <zorder>batteryBar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -676,7 +693,7 @@ padding: 0px 5px 5px 5px;</string>
      <x>0</x>
      <y>0</y>
      <width>666</width>
-     <height>22</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

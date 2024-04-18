@@ -9,5 +9,10 @@
         <file>play.jpeg</file>
         <file>chargedBattery.jpeg</file>
         <file>powerIcon.jpeg</file>
+        <file>battery_0.jpeg</file>
+        <file>battery_1.jpeg</file>
+        <file>battery_2.jpeg</file>
+        <file>battery_3.jpeg</file>
+        <file>battery_4.jpeg</file>
     </qresource>
 </RCC>

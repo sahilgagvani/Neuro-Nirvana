@@ -43,6 +43,7 @@ public slots:
     void drawGraph(int, int);
     void getElectrodeGraph(int);
     void saveData(int,int);
+    void updateBatteryLevel();
 
 private:
     Ui::MainWindow *ui;
@@ -61,7 +62,11 @@ private:
     bool disconnectTimerRunning;
     int remainingTime;
     void disableButtons(bool);
+<<<<<<< Updated upstream
     void deletePreSessions();
+=======
+    int batteryLevel;
+>>>>>>> Stashed changes
 
 signals:
     void getElectrodeInfo(int);

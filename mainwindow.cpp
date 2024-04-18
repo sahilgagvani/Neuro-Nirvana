@@ -58,6 +58,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->menuOptions->setId(button, button->objectName().right(1).toInt());
     }
     disconnectTimerRunning = false;
+
+    batteryLevel = 4; //initializing battery bar
 }
 
 MainWindow::~MainWindow()
@@ -269,22 +271,35 @@ void MainWindow::startTreatment() {
     ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(51, 209, 122);}");
 
     // code for starting treatment here
+    if(batteryLevel>0){
+        batteryLevel--;
+        updateBatteryLevel();
 
-    ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
-    createTimer();
-    if (counter == 60 ){
-        ui->batteryBar->setValue(ui->batteryBar->value() - 33);
-    }
-    headset->applyFullTreatment();
+        ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
+        createTimer();
 
-    if ((ui->batteryBar->value() <= 1)) {
-        QMessageBox batteryDead;
-        batteryDead.setText("Alert: Battery is dead. Powering off");
-        batteryDead.exec();
-        qInfo("Powering off");
-        ui->sessionLayout->hide();
-        MainWindow::on_powerButton_released();
+        if (counter == 60 ){
+            int currentValue = ui->batteryBar->value();
+            ui->batteryBar->setValue(currentValue - 33);
+        }
+        headset->applyFullTreatment();
+
+
+        if (batteryLevel <= 0) {
+            //QMessageBox batteryWarning;
+            QMessageBox batteryDead;
+            batteryDead.setText("Alert: Battery is dead. Powering off");
+            batteryDead.exec();
+            qInfo("Powering off");
+            ui->sessionLayout->hide();
+            MainWindow::on_powerButton_released();
+        }
+    } else {
+        QMessageBox batteryEmpty;
+        batteryEmpty.setText("Error: Battery is empty. Cannot start treatment.");
+        batteryEmpty.exec();
     }
+
 }
 
 void MainWindow::getElectrodeGraph(int index) {
@@ -415,4 +430,29 @@ void MainWindow::deletePreSessions(){
     }
 }
 
+
+void MainWindow::updateBatteryLevel(){
+    QString batteryImagePath;
+
+    switch(batteryLevel){
+    case 4:
+        batteryImagePath = ":/battery_4.jpeg";
+        break;
+    case 3:
+        batteryImagePath = ":/battery_3.jpeg";
+        break;
+    case 2:
+        batteryImagePath = ":/battery_2.jpeg";
+        break;
+    case 1:
+        batteryImagePath = ":/battery_1.jpeg";
+        break;
+    default:
+        batteryImagePath = ":/battery_0.jpeg";
+        break;
+    }
+
+    QPixmap batteryPixMap(batteryImagePath);
+    ui->batteryBarImage->setPixmap(batteryPixMap);
+}
 
