@@ -45,6 +45,7 @@ public slots:
     void saveData(int,int);
     void updateBatteryLevel();
     void saveBaselines(int,int);
+    void endTreatment();
 
 private:
     Ui::MainWindow *ui;

@@ -103,6 +103,11 @@ void MainWindow::disableButtons(bool disableValue) {
 }
 
 void MainWindow::on_powerButton_released(){
+    if (batteryLevel <= 0) {
+        batteryLevel = 4;
+        updateBatteryLevel();
+    }
+
     if (ui->menuLayout->isVisible()) {
         ui->menuLayout->hide();
         MainWindow::disableButtons(true);
@@ -211,7 +216,6 @@ static int counter = 60; // Initialize counter to 1 minute - page 5 para 3 line 
 static int counter2 = 10;
 
 void MainWindow::createTimer(){
-
     // Check if timerWidget already exists, delete it if it does
     if (timerWidget) {
         delete timerWidget;
@@ -248,6 +252,16 @@ void MainWindow::createTimer(){
         ui->progressBar->setValue(100 - seconds /60.0 * 100);
 
         if (counter == 0) {
+            batteryLevel--;
+            if (batteryLevel <= 0) {
+                MainWindow::endTreatment();
+                MainWindow::on_powerButton_released();
+
+            } else {
+                counter = 60;
+                createTimer();
+            }
+
             saveData(initialBaseline,finalBaseline);
             delete timerWidget;
             timerWidget = nullptr;
@@ -255,7 +269,8 @@ void MainWindow::createTimer(){
             ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
             ui->blueLight->setStyleSheet("QPushButton{background-color: rgb(153, 193, 241);}");
             counter=60;
-            //timer->stop(); // Stop the timer
+            //timer->stop();
+            updateBatteryLevel();
         }
     });
 
@@ -272,34 +287,25 @@ void MainWindow::startTreatment() {
 
     // code for starting treatment here
     if(batteryLevel>0){
-        batteryLevel--;
-        updateBatteryLevel();
-
         ui->greenLight->setStyleSheet("QPushButton{background-color: rgb(143, 240, 164);}");
         createTimer();
-
-        if (counter == 60 ){
-            int currentValue = ui->batteryBar->value();
-            ui->batteryBar->setValue(currentValue - 33);
-        }
         headset->applyFullTreatment();
-
-
-        if (batteryLevel <= 0) {
-            //QMessageBox batteryWarning;
-            QMessageBox batteryDead;
-            batteryDead.setText("Alert: Battery is dead. Powering off");
-            batteryDead.exec();
-            qInfo("Powering off");
-            ui->sessionLayout->hide();
-            MainWindow::on_powerButton_released();
-        }
     } else {
         QMessageBox batteryEmpty;
         batteryEmpty.setText("Error: Battery is empty. Cannot start treatment.");
         batteryEmpty.exec();
     }
+}
 
+void MainWindow::endTreatment() {
+    QMessageBox batteryDead;
+    batteryLevel = 0;
+    updateBatteryLevel();
+    batteryDead.setText("Alert: Battery is dead. Powering off");
+    batteryDead.exec();
+    qInfo("Powering off");
+    ui->sessionLayout->hide();
+    MainWindow::on_powerButton_released();
 }
 
 void MainWindow::getElectrodeGraph(int index) {
