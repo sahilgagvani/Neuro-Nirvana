@@ -647,23 +647,10 @@ padding: 0px 5px 5px 5px;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="Resources.qrc">:/battery_4.jpeg</pixmap>
+     <pixmap>:/battery_4.jpeg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="batteryBar">
-    <property name="geometry">
-     <rect>
-      <x>530</x>
-      <y>550</y>
-      <width>118</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>24</number>
     </property>
    </widget>
    <zorder>screen</zorder>
@@ -685,7 +672,6 @@ padding: 0px 5px 5px 5px;</string>
    <zorder>disconnectLayout</zorder>
    <zorder>logLayout</zorder>
    <zorder>batteryBarImage</zorder>
-   <zorder>batteryBar</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -693,7 +679,7 @@ padding: 0px 5px 5px 5px;</string>
      <x>0</x>
      <y>0</y>
      <width>666</width>
-     <height>24</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
