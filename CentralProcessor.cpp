@@ -1,6 +1,7 @@
 #include "CentralProcessor.h"
 #include <iostream>
 #include <fstream>
+#include<unistd.h>
 
 using namespace std;
 
@@ -47,7 +48,6 @@ double CentralProcessor::calculateBaselineAmplitude(){
 // Apply ONE ROUND of treatment
 void CentralProcessor::applyTreatmentRound(){
     double newOffsetFreq = offsetFreq / 16;
-
     // Loop over all electrodes to deliver treatment
     for (int i = 0; i < numElectrodes; i++){
 
@@ -86,12 +86,18 @@ void CentralProcessor::applyFullTreatment(){
 
     // Apply 4 rounds of treatment, each time recalculating the dominant frequencies
     for (int i = 0; i < numTreatments; i++){
+        qInfo("\nPerforming Calculations. Please wait for 5 seconds..");
+        sleep(5);
+        qInfo("\Performing treatment. Please wait for 1 second..");
+        sleep(1);
         qInfo("\nStarting round %d of %d treatments", i+1, numTreatments);
         applyTreatmentRound();
         qInfo("Ending round %d of %d treatments", i+1, numTreatments);
     }
 
     double endingBaseline = calculateBaselineFrequency();
+    qInfo("\nCalculating baseline frequency. Please wait for 5 seconds..");
+    sleep(5);
 
     // Print results to console / graph
     emit graphUpdate(endingBaseline, baselineAmplitude);

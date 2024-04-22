@@ -212,7 +212,7 @@ void MainWindow::drawGraph(int amp, int freq){
 }
 
 
-static int counter = 60; // Initialize counter to 1 minute - page 5 para 3 line 2
+static int counter = 29; // Initialize counter to 1 minute - page 5 para 3 line 2
 static int counter2 = 10;
 
 void MainWindow::createTimer(){
