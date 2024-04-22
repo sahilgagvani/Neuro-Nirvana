@@ -74,6 +74,7 @@ void CentralProcessor::singleElectrodeGraph(int index) {
     }
 }
 
+
 void CentralProcessor::applyFullTreatment(){
     // Calculate the baseline frequency before treatments
     double startingBaseline = calculateBaselineFrequency();
@@ -82,19 +83,22 @@ void CentralProcessor::applyFullTreatment(){
     // Update display and log changes
     emit graphUpdate(startingBaseline, baselineAmplitude);
     qInfo("Initial baseline frequency: %.2fhz", startingBaseline);
-    qInfo("\nPerforming Calculations. Please wait for 5 seconds..");
-    sleep(5);
+
+
     // Apply 4 rounds of treatment, each time recalculating the dominant frequencies
     for (int i = 0; i < numTreatments; i++){
-        qInfo("\Performing treatment. Please wait for 1 second..");
+        qInfo("\nPerforming Calculations. Please wait for 5 seconds..");
+        sleep(5);
+
+        qInfo("\nPerforming treatment %d of %d. Please wait for 1 second..", i+1, numTreatments);
         sleep(1);
-        qInfo("\nStarting round %d of %d treatments", i+1, numTreatments);
+
         applyTreatmentRound();
         qInfo("Ending round %d of %d treatments", i+1, numTreatments);
     }
 
     double endingBaseline = calculateBaselineFrequency();
-    qInfo("\nCalculating baseline frequency. Please wait for 5 seconds..");
+    qInfo("\nCalculating final baseline frequency. Please wait for 5 seconds..");
     sleep(5);
 
     // Print results to console / graph
