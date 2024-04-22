@@ -17,14 +17,16 @@ Ashneet (101245319, ashneetnagi@cmail.carleton.ca)
 
 Mary-Emma (101217903, maryemmabarnhill@cmail.carleton.ca)
 - Implemented frontend of device - menu, new session, and time and date screens, arrow buttons and scrolling, power button, lights.
-- Implemented lay and pause button functionality.
-- Disconnect button and function for handling node disconnection.
-- Filmed demo video
+- Implemented play and pause button functionality, as well as disconnect button and function for handling node disconnection.
+- Filmed demo video.
+- Documentation: Traceability matrix
 
 Jon  (101163311, johnslee@cmail.carleton.ca)
 - Implemented the calculations for treatment, both dominant and baseline frequency
 - Made tweaks to the existing electrode class
+- Contributed to timer functionality.
 
 Sahil (101231899, sahilgagvani@cmail.carleton.ca) 
 - Implemented a widget to handle all the requirements of the timer w.r.t the treatment process.
 - Implemented the time and date menu screen, and made it to update dynamically.
+- Contributed to timer functionality.
