@@ -82,12 +82,10 @@ void CentralProcessor::applyFullTreatment(){
     // Update display and log changes
     emit graphUpdate(startingBaseline, baselineAmplitude);
     qInfo("Initial baseline frequency: %.2fhz", startingBaseline);
-
-
+    qInfo("\nPerforming Calculations. Please wait for 5 seconds..");
+    sleep(5);
     // Apply 4 rounds of treatment, each time recalculating the dominant frequencies
     for (int i = 0; i < numTreatments; i++){
-        qInfo("\nPerforming Calculations. Please wait for 5 seconds..");
-        sleep(5);
         qInfo("\Performing treatment. Please wait for 1 second..");
         sleep(1);
         qInfo("\nStarting round %d of %d treatments", i+1, numTreatments);
