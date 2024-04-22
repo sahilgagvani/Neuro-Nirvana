@@ -1,8 +1,13 @@
 Project Members: Ashneet Nagi, Jon Lee, Shanya Rana, Mary-Emma Barnhill, Sahil Gagvani
 
+Project demo video can be found at https://youtu.be/AKnI0czpkYU
+
+Documentation can be found in the Documentation folder.
+
 Project Contributions:
 Shanya (101218258, shanyarana@cmail.carleton.ca)
 - Implemented the battery level check during, and after a treatment session
+- Battery draining after running session
 - Provided insight in putting together the projects documentation
 
 Ashneet (101245319, ashneetnagi@cmail.carleton.ca)
@@ -10,10 +15,10 @@ Ashneet (101245319, ashneetnagi@cmail.carleton.ca)
 - Saving and displaying session logs
 
 Mary-Emma (101217903, maryemmabarnhill@cmail.carleton.ca)
-- Implemented rontend of device - menu, new session, and time and date screens, arrow buttons and scrolling, power button, lights.
+- Implemented frontend of device - menu, new session, and time and date screens, arrow buttons and scrolling, power button, lights.
 - Implemented lay and pause button functionality.
 - Disconnect button and function for handling node disconnection.
-- Battery draining after running session.
+- Filmed demo video
 
 Jon  (101163311, johnslee@cmail.carleton.ca)
 - Implemented the calculations for treatment, both dominant and baseline frequency
