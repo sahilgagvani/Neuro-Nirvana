@@ -13,6 +13,7 @@ Shanya (101218258, shanyarana@cmail.carleton.ca)
 Ashneet (101245319, ashneetnagi@cmail.carleton.ca)
 - Made time and date editable
 - Saving and displaying session logs
+- Documentation: UML State Diagrams, Use Case 2 and 3, Normal operation sequence diagram, and Battery low response sequence diagram
 
 Mary-Emma (101217903, maryemmabarnhill@cmail.carleton.ca)
 - Implemented frontend of device - menu, new session, and time and date screens, arrow buttons and scrolling, power button, lights.
