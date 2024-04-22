@@ -6,9 +6,10 @@ Documentation can be found in the Documentation folder.
 
 Project Contributions:
 Shanya (101218258, shanyarana@cmail.carleton.ca)
-- Implemented the battery level check during, and after a treatment session
-- Battery draining after running session
-- Provided insight in putting together the projects documentation
+- Implemented the battery level check during, and after a treatment session.
+- Battery draining after running session.
+- Documentation: Use Case 1, UML Class Diagram, Textual explanation of design choices,
+      Therapy history viewing with PC sequence diagram, and Connection loss between electrodes and the device sequence diagram.
 
 Ashneet (101245319, ashneetnagi@cmail.carleton.ca)
 - Made time and date editable
