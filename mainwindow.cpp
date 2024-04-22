@@ -212,7 +212,7 @@ void MainWindow::drawGraph(int amp, int freq){
 }
 
 
-static int counter = 60; // Initialize counter to 1 minute - page 5 para 3 line 2
+static int counter = 29; // Initialize counter to 1 minute - page 5 para 3 line 2
 static int counter2 = 10;
 
 void MainWindow::createTimer(){
@@ -249,7 +249,7 @@ void MainWindow::createTimer(){
         // Updating the timer label
         QString timeString = QString("%1:%2").arg(minutes, 1, 10, QChar('0')).arg(seconds, 2, 10, QChar('0')); // basic formatting
         timerLabel->setText(timeString);
-        ui->progressBar->setValue(100 - seconds /60.0 * 100);
+        ui->progressBar->setValue(100 - seconds /29.0 * 100);
 
         if (counter == 0) {
             batteryLevel--;
